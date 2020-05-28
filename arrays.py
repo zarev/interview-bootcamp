@@ -61,15 +61,17 @@ def max_sub_sum(arr):
     #             maxSum[i] = max( arr[i], arr[i] + maxSum[i - 1] )
     #       return max(maxSum)
 
+from collections import deque
 def moveZeroes(arr):
     # input:  [0,1,0,3,12]
     # output: [1,3,12,0,0]
     # edge cases: 
     # assumptions: in-line, w/o array copy
-    for i in arr:
-        pass
-
-
+    count = arr.count(0)
+    # [arr.remove(i) for i in arr if i==0]
+    arr = [i for i in arr if i!=0]
+    arr+= [0]*count
+    return arr
 
 def main():
     # rev_for('my name is')
@@ -80,11 +82,11 @@ def main():
     two_sum_arr = [2,7,11,15]
     max_sub_arr = [-2,1,-3,4,-1,2,1,-5,4]
     in_line_arr = [0,1,0,3,12]
-    
     target = 9
-
     # print(mergeSorted(arr1, arr2))
     # print(two_sum(two_sum_arr, target))
-    print(max_sub_sum(max_sub_arr))
+    # print(max_sub_sum(max_sub_arr))
+    print(moveZeroes(in_line_arr))
+
 
 main()
