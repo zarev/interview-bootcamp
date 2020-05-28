@@ -61,32 +61,64 @@ def max_sub_sum(arr):
     #             maxSum[i] = max( arr[i], arr[i] + maxSum[i - 1] )
     #       return max(maxSum)
 
-from collections import deque
 def moveZeroes(arr):
     # input:  [0,1,0,3,12]
     # output: [1,3,12,0,0]
     # edge cases: 
-    # assumptions: in-line, w/o array copy
+    # asumptions: in-line, w/o array copy
     count = arr.count(0)
     # [arr.remove(i) for i in arr if i==0]
     arr = [i for i in arr if i!=0]
     arr+= [0]*count
     return arr
 
+def containtsDuplicates(arr):
+    return len(arr) > len(set(arr))
+
+def rotate(arr, k):
+    """
+    Do not return anything, modify nums in-place instead.
+    [-1, -100, 3, 99], k=2 
+
+    """ 
+    def reverse(arr, start, end):
+        while start < end:
+            arr[start], arr[end] = arr[end], arr[start]
+            start += 1
+            end -= 1
+
+    lenn = len(arr)
+    k = k % lenn
+    # reverse the whole list
+    # then each side of k
+    reverse(arr, 0, lenn-1)
+    reverse(arr, 0, k - 1)
+    reverse(arr, k, lenn-1)
+ 
 def main():
     # rev_for('my name is')
     # rev_slice('hi my name is')
+    # arr =         [0,1,2,3]
+    # k = 3
+    # for i in range(len(arr)):
+    #     new_i = (i+k) % len(arr)
     
-    sorted1 =     [0,3,4,31,32]
-    sorted2 =     [4,6,30]
-    two_sum_arr = [2,7,11,15]
-    max_sub_arr = [-2,1,-3,4,-1,2,1,-5,4]
-    in_line_arr = [0,1,0,3,12]
-    target = 9
+    # sorted1 =     [0,3,4,31,32]
+    # sorted2 =     [4,6,30]
+    # two_sum_arr = [2,7,11,15]
+    # max_sub_arr = [-2,1,-3  ,4,-1,2,1,-5,4]
+    # in_line_arr = [0,1,0,3,12]
+    arr_rotate =  [-1, -100, 3, 99]
+    # target = 9
     # print(mergeSorted(arr1, arr2))
     # print(two_sum(two_sum_arr, target))
     # print(max_sub_sum(max_sub_arr))
-    print(moveZeroes(in_line_arr))
+    # print(moveZeroes(in_line_arr))
+    # print(containtsDuplicates([3,3]))
+    # print(len(sorted1) > len(set([1,1])))
+    print(rotate(arr_rotate,2))
+    # [start:stop:step] 
+
 
 
 main()
