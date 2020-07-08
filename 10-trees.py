@@ -9,7 +9,7 @@ def notes():
   # The number of nodes in the last layer equals the sum of all other nodes + 1:
   #         ( )
   #     ( )     ( )
-  # Number of noeds = 2^h - 1
+  # Number of nodes = 2^h - 1
   # 
   # Full trees can have 0 or 2 children
   # 
@@ -47,7 +47,6 @@ class Node:
     self.right = None
     self.value = value
 
-from collections import deque
 class BST:
   def __init__(self):
     self.root = None
@@ -168,6 +167,8 @@ class BST:
     return False 
 
   def BFS(self):
+    from collections import deque
+
     if self.root:
       queue = deque()
       queue.append(self.root)
@@ -207,7 +208,7 @@ def traversePreOrder(node, list):
   list.append(node.value) ####
 
   if(node.left):
-    traversePreOrder(node.left, list)
+    traversePreOrder(node.left, list) 
   
   if(node.right):
     traversePreOrder(node.right, list)
@@ -224,16 +225,45 @@ def traversePostOrder(node, list):
   list.append(node.value)####
 
   return list  
+
+# 108, leetcode
+def arrToTree(nums):
+  if not nums: return None
+  return _construct(nums, 0, len(nums)-1)
+ 
+def _construct(nums, left, right):
+  tree = BST()
+  if left > right: return None
+
+  mid = left + (right-left) // 2 
   
+  tree.root = Node(nums[mid])
+  tree.root.left = _construct(nums, left, mid -1)
+  tree.root.right = _construct(nums, mid + 1, right)
+  
+  return tree.root
+
+# arrToTree([-10,-3,0,5,9])
+
 tree = BST()
 
-nodes = [10, 1, 0, 5, 15, 11, 16]
-for node in nodes: tree.insert(node)
+for node in [1,1]: tree.insert(node)
 
-# tree.print_tree()
+tree.print_tree()
 # print(tree.BFS())
 #     10
 #    /  \
 #   1   15
 #  / \  / \
 # 0  5 11 16
+
+# 98, leetcode
+def isBST(root): 
+  return _traverse(root)
+def _traverse(root, min=float('-inf'), max=float('inf')):
+  if (not root): return True #base case
+  if (max and root.value >= max or min and root.value <= min or root.value == root.left.value): return False #checking if leaves are within range
+  return _traverse(root.left, min, root.value) and \
+         _traverse(root.right, root.value, max) #traverse
+
+print(isBST(tree.root))

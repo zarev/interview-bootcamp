@@ -95,6 +95,13 @@ def rotate(arr, k):
     reverse(arr, 0, k - 1)
     reverse(arr, k, lenn-1)
  
+def first_reccuring(arr): 
+    hash = {}
+    for n in arr:
+        if n in hash: return n
+        # if not found add to hash
+        else: hash[n] = n
+
 def main():
     # rev_for('my name is')
     # rev_slice('hi my name is')
@@ -102,13 +109,14 @@ def main():
     # k = 3
     # for i in range(len(arr)):
     #     new_i = (i+k) % len(arr)
-    
+
     # sorted1 =     [0,3,4,31,32]
     # sorted2 =     [4,6,30]
     # two_sum_arr = [2,7,11,15]
-    # max_sub_arr = [-2,1,-3  ,4,-1,2,1,-5,4]
+    # max_sub_arr = [-2,1,-3,4,-1,2,1,-5,4]
     # in_line_arr = [0,1,0,3,12]
-    arr_rotate =  [-1, -100, 3, 99]
+    # arr_rotate =  [-1, -100, 3, 99]
+    first_reccur = [3,1,4,2,3]
     # target = 9
     # print(mergeSorted(arr1, arr2))
     # print(two_sum(two_sum_arr, target))
@@ -116,7 +124,8 @@ def main():
     # print(moveZeroes(in_line_arr))
     # print(containtsDuplicates([3,3]))
     # print(len(sorted1) > len(set([1,1])))
-    print(rotate(arr_rotate,2))
+    # print(rotate(arr_rotate,2))
+    print(first_reccuring(first_reccur))
     # [start:stop:step] 
 
 
