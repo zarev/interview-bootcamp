@@ -1,6 +1,6 @@
 # 344, leetcode
 def rev_string(in_str): 
-  print(in_str.reverse()) # shortest for leetcode
+  print(in_str.reverse()) # shortest for leetcode, only works on char[]
   # return in_str[::-1] # slicing returns a copy in reverse
  
   # generic solution:
@@ -196,3 +196,48 @@ def removeDuplicates(nums):
 # 122, leetcode
 def buy_sell(prices):
   return
+
+# 7, leetcode 
+def rev_int(x: int) -> int:
+  rev = 0
+  a = abs(x)
+  while(a != 0):
+    rev = (rev*10) + a % 10
+    a = a//10
+  if(rev >= 2**31 or rev <= -2**31): return 0
+    
+  return rev if x >= 0 else -rev
+
+# print(rev_int(-123))
+
+# 387, leetcode, input string s
+def firstUniquChar(s):
+  cache = dict.fromkeys(s, 0)
+  for ch in s: 
+    cache[ch] += 1
+  for key, val in cache.items():
+    if val == 1: return s.index(key)
+  return -1
+
+# print(firstUniquChar('leetcode'))
+
+# 242, leetcode, valid anagram
+def validAnagram(s1, s2):
+  if(s1==s2): return True
+  if(len(s1) != len(s2)): return False
+  # return sorted(s1) == sorted(s2)
+  # OR
+  # from collections import  Counter
+  # return collections.Counter(s) == collections.Counter(t)
+  counter = [0]*26
+  for i in range(len(s1)-1):
+    counter[ord(s1[i]) - ord('a')] += 1
+    counter[ord(s2[i]) - ord('a')] -= 1
+  
+  for count in counter: 
+    if(count !=0): return False
+    
+  return True
+
+# print(validAnagram('anagram', 'nagaram'))
+
