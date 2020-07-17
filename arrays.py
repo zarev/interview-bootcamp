@@ -34,18 +34,7 @@ def mergeSorted(arr1, arr2):
     
     return merged
 
-def two_sum(arr, target):
-    if(not arr or type(target)!=int): return False
-    
-    # for i in enumerate(arr):
-    #     for j in enumerate(arr):
-    #         if(arr[i] + arr[j] == target): return i, j
-    hash = {}
-    for i, n in enumerate(arr):
-        # looking for the complement
-        if target-n in hash: return [hash[target-n], i]
-        # if not found add
-        else: hash[n] = i
+
 
 def max_sub_sum(arr):
     if(not arr): raise ValueError('Array must not be empty.')

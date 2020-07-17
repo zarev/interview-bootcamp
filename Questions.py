@@ -86,7 +86,7 @@ def sum_ints(a, b):
 # 169, leetcode
 def majorityElement(nums):
   n = len(nums) // 2
-  freqs = {}
+  freqs = dict.fromkeys(nums, 1)
   
   for num in nums:
     if (num not in freqs):
@@ -241,3 +241,60 @@ def validAnagram(s1, s2):
 
 # print(validAnagram('anagram', 'nagaram'))
 
+# 1, leetcode Two Sum
+def two_sum(arr, target):
+    if(not arr or type(target)!=int): return False
+    
+    # for i in enumerate(arr):
+    #     for j in enumerate(arr):
+    #         if(arr[i] + arr[j] == target): return i, j
+    hash = {}
+    for i, n in enumerate(arr):
+        # looking for the complement(target-n)
+        if target-n in hash: return [hash[target-n], i]
+        # if not found add
+        else: hash[n] = i
+
+# print(two_sum([2,7,11,15], 9))
+
+# 66, leetcode Plus One
+def plusOne(digits):
+  # # if input is [9]
+  # if len(digits) == 1 and digits[0]==9: return [1,0]
+  # # if last digit is not 9
+  # if digits[-1] != 9:
+  #   digits[-1] += 1
+  #   return digits
+  # # if it is 9, rollover
+  # else:
+  #   digits[-1] = 0
+  #   digits[:-1] = plusOne(digits[:-1])
+  #   return digits
+  for i in range(len(digits)):
+    # none of the numbers is 9
+    if(digits[~i] < 9):
+      digits[~i] += 1
+      return digits
+    # if there are 9s
+    digits[~i] = 0
+  return [1] + [0] * len(digits)
+
+# print(plusOne([1,9,9]))
+
+# 350, leetcode, arr interstect 2
+from collections import Counter
+def interstect(nums1, nums2):
+  # save memory by always using the smaller arr
+  if(len(nums2) < len(nums1)): nums1, nums2 = nums2, nums1
+  res = []
+  # counter creates dict with freqs
+  freqs = Counter(nums1)
+  for num in nums2:
+    # if curr is in cache
+    if (freqs[num] > 0):
+      res.append(num)
+      # decrement not to count again
+      freqs[num] -= 1
+  return res
+
+print(interstect([4,9,5], [9,4,9,8,4]))
