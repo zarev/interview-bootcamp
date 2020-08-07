@@ -146,7 +146,6 @@ def balance_data(str_data=None):
   import numpy as np
 
   arr = np.array(str_data.strip(',x[]?.!/;:').split(',')).astype(np.float)
-  n = len(arr)
 
   print(arr)
 
@@ -280,7 +279,9 @@ def plusOne(digits):
   return [1] + [0] * len(digits)
 
 # print(plusOne([1,9,9]))
-
+# post to comedy suicide
+# cross post to heaven > Guy really milking it.
+# cross post to funny > my head hurts
 # 350, leetcode, arr interstect 2
 from collections import Counter
 def interstect(nums1, nums2):
@@ -297,4 +298,62 @@ def interstect(nums1, nums2):
       freqs[num] -= 1
   return res
 
-print(interstect([4,9,5], [9,4,9,8,4]))
+def containtsDuplicates(arr):
+    return len(arr) > len(set(arr))
+
+# print(interstect([4,9,5], [9,4,9,8,4]))
+# 36 leetcode, valid sudoku
+# for loop
+# strip each line of *
+# check each line for dupls
+def isValidSudoku(board):
+  for i in range(9):
+    print(i)
+    # separate cols and rows and strip non digits
+    curr_row = [int(k) for k in board[i] if k != '.']
+    curr_col = [int(k[i]) for k in board if k[i] != '.'] 
+    curr_box = [int(board[x][y]) for x in range(x/9, x/9+3) for y in range(y/9, y/9+3)]
+    # rules
+    isRowValid = len(curr_row) > len(set(curr_row))
+    isColValid = len(curr_col) > len(set(curr_col))
+    is3x3Valid = len(curr_box) > len(set(curr_box))
+    
+    # check for duplicates
+    return(isRowValid and isColValid and is3x3Valid)
+
+
+
+arr = [
+  ["8","3",".",".","7",".",".",".","."],
+  ["6",".",".","1","9","5",".",".","."],
+  [".","9","8",".",".",".",".","6","."],
+  ["8",".",".",".","6",".",".",".","3"],
+  ["4",".",".","8",".","3",".",".","1"],
+  ["7",".",".",".","2",".",".",".","6"],
+  [".","6",".",".",".",".","2","8","."],
+  [".",".",".","4","1","9",".",".","5"],
+  [".",".",".",".","8",".",".","7","9"]
+]
+
+arr2 = [
+  [".",".",".",".","5",".",".","1","."],
+  [".","4",".","3",".",".",".",".","."],
+  [".",".",".",".",".","3",".",".","1"],
+  ["8",".",".",".",".",".",".","2","."],
+  [".",".","2",".","7",".",".",".","."],
+  [".","1","5",".",".",".",".",".","."],
+  [".",".",".",".",".","2",".",".","."],
+  [".","2",".","9",".",".",".",".","."],
+  [".",".","4",".",".",".",".",".","."]
+]
+# print(len(arr) > len(set(arr)))
+print(isValidSudoku(arr2))
+
+# # arr2 = [[1,2,3], [4,5,6]]
+# for i in range(1,len(arr2)+1):
+#   if(len(arr2)%i==0):
+#     print(i)
+    # print([arr2[x][y] for x in range(i-1, i+3-1) for y in range(i-1, i+3-1)])
+
+# for i in range(3):
+  # for j in range(3):
